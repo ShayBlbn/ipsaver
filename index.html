@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+      .container {
+        margin-top: 50px;
+      }
+      .alert {
+        font-size: 1.2rem;
+      }
+      .footer {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 0.9rem;
+        color: #6c757d;
+      }
+    </style>
+    <title>تسجيل الجهاز</title>
+  </head>
+  <body>
+    <div class="container">
+      <h2 class="text-center">مرحبا بك!</h2>
+      <div class="alert alert-success mt-3" id="message">
+        تم تسجيل عنوان IP الخاص بك ونوع جهازك.
+      </div>
+      <button id="infoButton" class="btn btn-info">عرض معلومات الجهاز</button>
+      <div id="deviceInfo" class="mt-3" style="display: none"></div>
+      <div class="footer">© 2024 جميع الحقوق محفوظة</div>
+    </div>
+
+    <script>
+      document
+        .getElementById("infoButton")
+        .addEventListener("click", function () {
+          const userAgent = navigator.userAgent;
+          const ip = "<?php echo $_SERVER['REMOTE_ADDR']; ?>"; // هذا سيحتاج لتعديلات في الخادم
+          const deviceInfo = `
+                <h5>معلومات الجهاز:</h5>
+                <p><strong>IP:</strong> ${ip}</p>
+                <p><strong>User Agent:</strong> ${userAgent}</p>
+            `;
+          document.getElementById("deviceInfo").innerHTML = deviceInfo;
+          document.getElementById("deviceInfo").style.display = "block";
+        });
+    </script>
+  </body>
+</html>
